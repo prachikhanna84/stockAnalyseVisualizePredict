@@ -1,5 +1,4 @@
-var apiKey = "KQbxmBerCsQ2H7JZ_YB8";
-
+var ticker=['AAPL', 'MSFT','TSLA','DELL','DIS'];
 /**
  * Helper function to select stock data
  * Returns an array of values
@@ -12,29 +11,56 @@ var apiKey = "KQbxmBerCsQ2H7JZ_YB8";
  * index 4 - Close
  * index 5 - Volume
  */
-function unpack(rows, index) {
-  return rows.map(function(row) {
-    return row[index];
-  });
+
+// Submit Button handler
+function handleSubmit() {
+  // Prevent the page from refreshing
+  d3.event.preventDefault();
+
+  // Select the input value from the form
+  var stock = d3.select("#tickerInput").node.value;
+  console.log(stock);
+
+
+  // clear the input value
+  d3.select("#tickerInput").value = "";
+
+  // Build the plot with the new stock
+  buildPlot(stock);
 }
 
-function buildPlot() {
-  var url = `http://localhost:5000/api/v1.0/getData/AAPL`;
+function buildPlot(stock) {
+  var apiKey = "TG5XV6MAKKAIRCTT";
 
+  var url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=AAPL&apikey=${apiKey}`;
+  console.log(url);
   d3.json(url).then(function(data) {
-
-    console.log(data);
+    var datedstock = Object.keys(data["Time Series (Daily)"]);
+    var stockValue= Object.values(data["Time Series (Daily)"])
+    var openingPrices=[];
+    var dates=[];
+    var highPrices=[];
+    var lowPrices=[];
+    var closingPrices=[];
+    for(oneDayValue of stockValue){
+      var name = "Stock PLot";
+      var stock = "AAPL";
+      var startDate = '2019-09-16';
+      var endDate = '2019-04-28';
+       dates=datedstock;
+       openingPrices.push(oneDayValue['1. open']);
+       highPrices.push(oneDayValue['2. high']);
+       lowPrices.push(oneDayValue['3. low']);
+       closingPrices.push(oneDayValue['4. close']);
+    }
     // Grab values from the response json object to build the plots
-    var name = data.dataset.name;
-    var stock = data.dataset.dataset_code;
-    var startDate = data.dataset.start_date;
-    var endDate = data.dataset.end_date;
-    var dates = unpack(data.dataset.data, 0);
-    var openingPrices = unpack(data.dataset.data, 1);
-    var highPrices = unpack(data.dataset.data, 2);
-    var lowPrices = unpack(data.dataset.data, 3);
-    var closingPrices = unpack(data.dataset.data, 4);
 
+    console.log(datedstock)
+    console.log(openingPrices)
+    console.log(highPrices)
+    console.log(lowPrices)
+    console.log(closingPrices)
+    
     var trace1 = {
       type: "scatter",
       mode: "lines",
@@ -85,4 +111,4 @@ var monthNames = [
 var today = new Date();
 var date = `${monthNames[today.getMonth()]} ${today.getFullYear().toString().substr(2, 2)}`;
 
-// d3.select("#report-date").text(date);
+d3.select("#submit").on("click", handleSubmit);

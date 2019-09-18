@@ -7,8 +7,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy.ext.automap import automap_base
 from flask import Flask, jsonify
-
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app)
 
 quandl.ApiConfig.api_key = apikey
 engine = create_engine("sqlite:///resources/stock.sqlite")

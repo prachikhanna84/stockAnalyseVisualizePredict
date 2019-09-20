@@ -10,6 +10,6 @@ news = json => {
     .text(json["articles"][0]["description"])
     .attr("align","center")
 
-    console.log(json["articles"][0]["description"])
+    // console.log(json["articles"][0]["description"])
 
 };

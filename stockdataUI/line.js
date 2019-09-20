@@ -17,20 +17,8 @@ const y = d3.scaleLinear().range([height, 0]);
 const valueline = d3.line()
     .x(function (d) { return x(d.date); })
     .y(function (d) { return y(d.close); });
-// define the line
-// const valueline2 = d3.line()
-//     .x(function (d) { return x(d.date); })
-//     .y(function (d) { return y(d.Exports); });
 
-// append the svg obgect to the body of the page
-// appends a 'group' element to 'svg'
-// moves the 'group' element to the top left margin
-const svg = d3.select("#chart").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+
 
 const bisectDate = d3.bisector(d => d.date).left;
 
@@ -48,9 +36,10 @@ const movingAverage = (data, numberOfPricePoints) => {
         };
     });
 };
-
-draw = (json, days) => {
-    const data = Object.keys(json["Time Series (Daily)"]).slice(0, days).map(k => ({
+var json;
+draw = (days) => {
+    const data = Object.keys(json["Time Series (Daily)"]).slice(0, days).map(k => (
+        {
         date: k,
         high: json["Time Series (Daily)"][k]["2. high"],
         low: json["Time Series (Daily)"][k]["3. low"],
@@ -59,6 +48,16 @@ draw = (json, days) => {
         volume: json["Time Series (Daily)"][k]["5. volume"]
 
     }));
+    console.log(data);
+
+    d3.select("svg").remove(); 
+
+    const svg = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
 
     // format the data
     data.forEach(d => {
@@ -84,14 +83,9 @@ draw = (json, days) => {
         .attr("class", "line")
         .attr('id', 'priceChart')
         .attr("d", valueline);
-    // Add the valueline path.
-    // svg.append("path")
-    //     .data([data])
-    //     .attr("class", "line")
-    //     .attr("d", valueline2);
-    // Add the X Axis
+
     // calculates simple moving average over 50 days
-    const movingAverageData = movingAverage(data, 49);
+    const movingAverageData = movingAverage(data, days);
     // generates moving average curve when called
     const movingAverageLine = d3
         .line()
@@ -196,7 +190,7 @@ draw = (json, days) => {
     const updateLegends = currentData => {
         d3.selectAll('.lineLegend').remove();
         const legendKeys = Object.keys(data[0]);
-        console.log("legendKeys",legendKeys)
+        // console.log("legendKeys",legendKeys)
         const lineLegend = svg
             .selectAll('.lineLegend')
             .data(legendKeys)
@@ -233,4 +227,16 @@ draw = (json, days) => {
 }
 
 // Get the data
-d3.json(url).then(json => draw(json, 49));
+d3.json(url).then(
+    j => {
+        json = j;
+        draw(360)
+    });
+
+
+function dayButtonClick(days) {
+    console.log("myfunction");
+    console.log(days);
+    
+    draw(days)
+}

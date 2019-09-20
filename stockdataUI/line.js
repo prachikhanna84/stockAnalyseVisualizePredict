@@ -3,7 +3,7 @@ const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol
 
 // set the dimensions and margins of the graph
 const margin = { top: 20, right: 20, bottom: 30, left: 50 },
-    width = 700 - margin.left - margin.right,
+    width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 // parse the date / time

@@ -5,7 +5,9 @@
 	<meta charset="UTF-8">
 	<title>Multi Line Axes</title>
 	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
 </head>
 
@@ -21,27 +23,43 @@
 
 		<div class="row">
 			<div class="col-md-12">
-				<div class="panel panel-default">
-					<input id="myInput" type="text" name="myticker" placeholder="Tickers">
-					<input id="submit" type="submit">
+				<div class="dropdown button">
+					<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">
+						Ticker
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item">AMZN</a>
+						<a class="dropdown-item">AAPL</a>
+						<a class="dropdown-item">MSFT</a>
+					</div>
+				</div>
+				<div class="btn-group button" role="group" aria-label="Basic example">
+					<button type="button" class="btn  ">1d</button>
+					<button type="button" class="btn  ">1w</button>
+					<button type="button" class="btn ">1m</button>
 				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-4">
-				<div id="chart1" style="padding-left: 20;margin: 10px;">
-					<p>This is a place holder</p>		
-				</div>
+			<div class="col-md-12">
+				<marquee behavior="scroll" direction="left" id="chart1"></marquee>
 			</div>
-			<div class="col-md-8">
-				<div id="chart" >
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div id="chart">
 
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<script src="line.js"></script>
+	<script src="news.js"></script>
+
 </body>
 
 </html>

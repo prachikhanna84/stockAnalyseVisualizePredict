@@ -12,7 +12,7 @@ app = Flask(__name__)
 CORS(app)
 
 quandl.ApiConfig.api_key = apikey
-engine = create_engine("sqlite:///resources/stock.sqlite")
+engine = create_engine(('postgresql://postgres:{}@localhost:5432/stockmarket').format('postgres'))
 
 Base = automap_base()
 Base.prepare(engine, reflect=True)
@@ -33,8 +33,9 @@ def home():
 def loadData():
     conn = engine.connect()
     session = Session(engine)
-    data = quandl.get_table('WIKI/PRICES', qopts = { 'columns': ['ticker', 'date', 'open','high','low','close','volume'] }, ticker = tickers, date = { 'gte': startDate, 'lte': endDate })
 
+    # data = quandl.get_table('WIKI/PRICES', qopts = { 'columns': ['ticker', 'date', 'open','high','low','close','volume'] }, ticker = tickers, date = { 'gte': startDate, 'lte': endDate })
+    data = quandl.get_table('WIKI/PRICES', qopts = { 'columns': ['ticker', 'date', 'open','high','low','close','volume'] }, ticker = ['AAPL', 'MSFT','TSLA','DELL','DIS'], date = { 'gte': '2018-01-01', 'lte': '2019-09-01' })    
     stock = StockDataFrame.retype(data)
     data['macd']=stock['macd']
     data['signal']=stock['macds']
@@ -55,6 +56,7 @@ def loadData():
 
     data.sort_values(by=['suggestion'])
     data=data.reset_index()
+
     Base.metadata.drop_all(engine)   # all tables are deleted
 
     data.to_sql('stockdata', con=engine)

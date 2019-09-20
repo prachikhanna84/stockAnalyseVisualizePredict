@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Multi Line Axes</title>
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
 </head>
+
 <body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1 style="text-align: center">
+				All About Stocks
+				<!-- <span id="report-date" style="float: right;">2017</span> -->
+			</h1>
+			<p></p>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<input id="myInput" type="text" name="myticker" placeholder="Tickers">
+					<input id="submit" type="submit">
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<div id="chart1" style="padding-left: 20;margin: 10px;">
+					<p>This is a place holder</p>		
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div id="chart" >
+
+				</div>
+			</div>
+		</div>
+	</div>
 	<script src="line.js"></script>
 </body>
+
 </html>

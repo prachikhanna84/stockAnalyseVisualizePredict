@@ -1,6 +1,6 @@
 .line {
   fill: none;
-  stroke: steelblue;
+  stroke: rgb(121, 171, 211);
   stroke-width: 2px;
 }
 
@@ -23,4 +23,16 @@
 
 .dow-text {
   fill: green;
+}
+
+body {
+  background: #00151c;
+}
+#chart {
+  background: #3a6e86;
+  color: #bdc3ca;
+}
+#chart1 {
+  background: #0e3040;
+  color: #67809f;
 }

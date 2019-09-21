@@ -1,5 +1,6 @@
 const apiKey = "TG5XV6MAKKAIRCTT";
-const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=AAPL&apikey=${apiKey}`;
+var ticker = 'AMZN';
+var url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&apikey=${apiKey}`;
 
 // set the dimensions and margins of the graph
 const margin = { top: 20, right: 20, bottom: 30, left: 50 },
@@ -40,24 +41,23 @@ var json;
 draw = (days) => {
     const data = Object.keys(json["Time Series (Daily)"]).slice(0, days).map(k => (
         {
-        date: k,
-        high: json["Time Series (Daily)"][k]["2. high"],
-        low: json["Time Series (Daily)"][k]["3. low"],
-        open: json["Time Series (Daily)"][k]["1. open"],
-        close: json["Time Series (Daily)"][k]["4. close"],
-        volume: json["Time Series (Daily)"][k]["5. volume"]
+            date: k,
+            high: json["Time Series (Daily)"][k]["2. high"],
+            low: json["Time Series (Daily)"][k]["3. low"],
+            open: json["Time Series (Daily)"][k]["1. open"],
+            close: json["Time Series (Daily)"][k]["4. close"],
+            volume: json["Time Series (Daily)"][k]["5. volume"]
 
-    }));
-    console.log(data);
+        }));
 
-    d3.select("svg").remove(); 
+    d3.select("svg").remove();
 
     const svg = d3.select("#chart").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
 
     // format the data
     data.forEach(d => {
@@ -226,17 +226,27 @@ draw = (days) => {
 
 }
 
+callSTockAPI();
 // Get the data
-d3.json(url).then(
-    j => {
-        json = j;
-        draw(360)
-    });
+function callSTockAPI() {
+    d3.json(url).then(
+        j => {
+            json = j;
+            draw(360)
+        });
+}
 
 
 function dayButtonClick(days) {
-    console.log("myfunction");
-    console.log(days);
-    
     draw(days)
+}
+
+function getTicker() {
+    var x = document.getElementById("mySelect").value
+    console.log(x);
+    ticker=x;
+    url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&apikey=${apiKey}`;
+
+    callSTockAPI();
+
 }

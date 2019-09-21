@@ -35,7 +35,7 @@ def loadData():
     session = Session(engine)
 
     # data = quandl.get_table('WIKI/PRICES', qopts = { 'columns': ['ticker', 'date', 'open','high','low','close','volume'] }, ticker = tickers, date = { 'gte': startDate, 'lte': endDate })
-    data = quandl.get_table('WIKI/PRICES', qopts = { 'columns': ['ticker', 'date', 'open','high','low','close','volume'] }, ticker = ['AAPL', 'MSFT','TSLA','DELL','DIS'], date = { 'gte': '2018-01-01', 'lte': '2019-09-01' })    
+    data = quandl.get_table('WIKI/PRICES', qopts = { 'columns': ['ticker', 'date', 'open','high','low','close','volume'] }, ticker = ['AAPL', 'MSFT','GOOGL','AMZN','TSLA','DELL','DIS'], date = { 'gte': '2018-01-01', 'lte': '2019-09-01' })    
     stock = StockDataFrame.retype(data)
     data['macd']=stock['macd']
     data['signal']=stock['macds']

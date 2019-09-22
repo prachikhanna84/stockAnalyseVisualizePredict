@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Stock Data Visualization & Prediction - Project 
 
 You can use the [editor on GitHub](https://github.com/prachikhanna84/stockAnalyseVisualizePredict/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 

@@ -26,7 +26,7 @@ Visualization on home page is customized for 1 week, 1 Month , 6 Month Data
 
 ### Visualization - Part 2
 
-Visualization on prediction page shows exponential moving average for 12 days , exponential moving avarage for 26 days, Moving average convergence divergence , signal line.
+Visualization on prediction page shows exponential moving average for 12 days , exponential moving avarage for 26 days, Moving average convergence divergence - calculated by taking the difference between a short-term moving average (12-day EMA) and a longer-term moving average (26-day EMA), signal line - created by taking a nine-period moving average of the MACD.
 
 As you can see from the chart below for AMAZON, many traders will watch for a long-term moving average (green line) to 
 cross above a short-term moving average (blue line) and use this to signal drecreasing downward momentum. This 

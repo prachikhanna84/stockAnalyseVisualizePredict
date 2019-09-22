@@ -29,7 +29,7 @@ Visualization on home page is customized for 1 week, 1 Month , 6 Month Data
 
 Visualization on prediction page shows exponential moving average for 12 days , exponential moving avarage for 26 days, Moving average convergence divergence , signal line.
 
-![](r/stockdataUI/images/visual2.png)
+![](/stockdataUI/images/visual2.png)
 
 ```markdown
 Syntax highlighted code block

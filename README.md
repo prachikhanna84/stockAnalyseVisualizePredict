@@ -1,9 +1,12 @@
 ## Stock Data Visualization & Prediction - Project 
 
 ### Technologies Used: 
-Front End: D3, Javascript , css , HTML 
+Front End: D3, Javascript , css , HTML
+
 Backend: Python for API
+
 Server : Flask 
+
 Database : Postgres
 
 

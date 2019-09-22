@@ -1,6 +1,5 @@
-const apiKey = "TG5XV6MAKKAIRCTT";
 var ticker = 'AMZN';
-var url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&apikey=${apiKey}`;
+var url = `http://localhost:5000/api/v1.0/getData/${ticker}`;
 
 // set the dimensions and margins of the graph
 const margin = { top: 20, right: 20, bottom: 30, left: 50 },
@@ -15,41 +14,38 @@ const x = d3.scaleTime().range([0, width]);
 const y = d3.scaleLinear().range([height, 0]);
 
 // define the line
-const valueline = d3.line()
+const valueline1 = d3.line()
     .x(function (d) { return x(d.date); })
-    .y(function (d) { return y(d.close); });
+    .y(function (d) { return y(d.close_12_ema); });
 
+const valueline2 = d3.line()
+    .x(function (d) { return x(d.date); })
+    .y(function (d) { return y(d.close_26_ema); });
 
+    const valueline3 = d3.line()
+    .x(function (d) { return x(d.date); })
+    .y(function (d) { return y(d.macd); });
 
-const bisectDate = d3.bisector(d => d.date).left;
+    const valueline4 = d3.line()
+    .x(function (d) { return x(d.date); })
+    .y(function (d) { return y(d.signal); });
 
-const movingAverage = (data, numberOfPricePoints) => {
-    return data.map((row, index, total) => {
-        const start = Math.max(0, index - numberOfPricePoints);
-        const end = index;
-        const subset = total.slice(start, end + 1);
-        const sum = subset.reduce((a, b) => {
-            return a + b['close'];
-        }, 0);
-        return {
-            date: row['date'],
-            average: sum / subset.length
-        };
-    });
-};
 var json;
-draw = (days) => {
-    const data = Object.keys(json["Time Series (Daily)"]).slice(0, days).map(k => (
+draw = () => {
+
+    // Object.keys(json).map(key=>{
+    //     console.log(json[key])               
+    // })
+    const data = Object.keys(json).map(k => (
         {
-            date: k,
-            high: json["Time Series (Daily)"][k]["2. high"],
-            low: json["Time Series (Daily)"][k]["3. low"],
-            open: json["Time Series (Daily)"][k]["1. open"],
-            close: json["Time Series (Daily)"][k]["4. close"],
-            volume: json["Time Series (Daily)"][k]["5. volume"]
+            date: json[k]['date'],
+            close_12_ema: json[k]['close_12_ema'],
+            close_26_ema: json[k]['close_26_ema'],
+            macd: json[k]['macd'],
+            signal: json[k]['signal']
 
         }));
-
+    console.log(data)
     d3.select("svg").remove();
 
     const svg = d3.select("#chart2").append("svg")
@@ -62,11 +58,10 @@ draw = (days) => {
     // format the data
     data.forEach(d => {
         d.date = new Date(d.date),
-            d.high = +d.high,
-            d.low = +d.low,
-            d.open = +d.open,
-            d.close = +d.close,
-            d.volume = +d.volume
+            d.close_12_ema = +d.close_12_ema,
+            d.close_26_ema = +d.close_26_ema,
+            d.macd = +d.macd,
+            d.signal = +d.signal
             ;
     });
 
@@ -75,14 +70,32 @@ draw = (days) => {
 
     // Scale the range of the data
     x.domain(d3.extent(data, d => d.date));
-    y.domain([0, d3.max(data, d => d.close)]);
+    y.domain([0, d3.max(data, d => d.close_12_ema)]);
 
     // Add the valueline path.
-    svg.append("path")
+    var line1 = svg.append("path")
         .data([data])
-        .attr("class", "line")
-        .attr('id', 'priceChart')
-        .attr("d", valueline);
+        .attr("class", "close_12_ema")
+        .attr("d", valueline1)
+        ;
+
+    var line2 = svg.append("path")
+        .data([data])
+        .attr("class", "close_26_ema")
+        .attr("d", valueline2
+        );
+
+    var line3 = svg.append("path")
+        .data([data])
+        .attr("class", "macd")
+        .attr("d", valueline3
+        );
+
+    var line4 = svg.append("path")
+        .data([data])
+        .attr("class", "signal")
+        .attr("d", valueline4
+        );
 
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
@@ -92,7 +105,53 @@ draw = (days) => {
     svg.append("g")
         .call(d3.axisLeft(y));
 
+    const line1Legend = svg
+        .selectAll('.close_12_ema')
+        .data(Object.keys(json))
+        .enter()
+        .append('g')
+        .attr('class', 'close_12_ema');
 
+    line1Legend
+        .append('text')
+        .text("close 12d ema")
+        .attr('transform', 'translate(800,10)');
+
+    const line2Legend = svg
+        .selectAll('.close_26_ema')
+        .data(Object.keys(json))
+        .enter()
+        .append('g')
+        .attr('class', 'close_26_ema');
+
+    line2Legend
+        .append('text')
+        .text("close 26d ema")
+        .attr('transform', 'translate(800,25)');
+
+        const line3Legend = svg
+        .selectAll('.macd')
+        .data(Object.keys(json))
+        .enter()
+        .append('g')
+        .attr('class', 'macd');
+
+    line3Legend
+        .append('text')
+        .text("macd")
+        .attr('transform', 'translate(800,40)');
+
+        const line4Legend = svg
+        .selectAll('.signal')
+        .data(Object.keys(json))
+        .enter()
+        .append('g')
+        .attr('class', 'signal');
+
+    line4Legend
+        .append('text')
+        .text("signal")
+        .attr('transform', 'translate(800,55)');
 }
 
 callSTockAPI();
@@ -101,19 +160,19 @@ function callSTockAPI() {
     d3.json(url).then(
         j => {
             json = j;
-            draw(360)
+            draw()
         });
 }
 
 
-function dayButtonClick(days) {
-    draw(days)
+function dayButtonClick() {
+    draw()
 }
 
 function getTicker() {
     var x = document.getElementById("mySelect").value
     console.log(x);
-    ticker=x;
+    ticker = x;
     url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&apikey=${apiKey}`;
 
     callSTockAPI();

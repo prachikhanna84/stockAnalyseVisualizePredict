@@ -12,15 +12,18 @@
 
 <body>
 	<div class="container">
-		<div class="jumbotron">
+		<div>
 			<ul class="nav nav-tabs">
 				<li class="nav-item">
-					<a class="nav-link active" href="prediction.html">Prediction</a>
+					<a class="nav-link active " href="prediction.html">Prediction</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link navbarstyle" href="index.html">Home</a>
 				</li>
 			</ul>
+		</div>
+		<div class="jumbotron">
+
 			<h1 style="text-align: center; color :white;">
 				All About Stocks
 			</h1>
@@ -36,11 +39,11 @@
 					<option value="MSFT">MSFT
 					<option value="GOOGL">GOOGL
 				</select>
-				<div class="btn-group button" role="group" aria-label="Basic example">
+				<!-- <div class="btn-group button" role="group" aria-label="Basic example">
 					<button type="button" class="btn " onclick="dayButtonClick('7')">1w</button>
 					<button type="button" class="btn " onclick="dayButtonClick('30')">1m</button>
 					<button type="button" class="btn " onclick="dayButtonClick('180')">6m</button>
-				</div>
+				</div> -->
 			</div>
 		</div>
 
@@ -67,7 +70,10 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
+
 	<script src="prediction.js"></script>
 	<script src="news.js"></script>
 

@@ -15,10 +15,21 @@ DataSources: alphavantage - Realtime Stock Data , Newsapi - Display top news ,qu
 
 ![](/stockdataUI/images/stock%20visualization.jpg)
 
+### Home Page
 
-### Markdown
+![](/stockdataUI/images/home.png)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Visualization - Part 1
+
+Visualization on home page is customized for 1 week, 1 Month , 6 Month Data
+
+![](/stockdataUI/images/visual1.png)
+
+### Visualization - Part 2
+
+Visualization on prediction page shows exponential moving average for 12 days , exponential moving avarage for 26 days, Moving average convergence divergence , signal line.
+
+![](r/stockdataUI/images/visual2.png)
 
 ```markdown
 Syntax highlighted code block

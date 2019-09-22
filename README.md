@@ -9,7 +9,7 @@ Server : Flask
 
 Database : Postgres
 
-DataSources: alphavantage - Realtime Stock Data , Newsapi - Display top news ,quandal/stockstats - Historical/data prediction
+DataSources: alphavantage - Realtime Stock Data , Newsapi - Display top news ,quandl/stockstats - Historical/data prediction
 
 ### Project Flow
 

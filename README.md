@@ -1,15 +1,11 @@
 ## Stock Data Visualization & Prediction - Project 
 
 ### Technologies Used: 
-Front End: D3, Javascript , css , HTML
-
-Backend: Python for API
-
-Server : Flask 
-
-Database : Postgres
-
-DataSources: alphavantage - Realtime Stock Data , Newsapi - Display top news ,quandl/stockstats - Historical/data prediction
+- Front End: D3, Javascript , css , HTML
+- Backend: Python for API
+- Server : Flask 
+- Database : Postgres
+- DataSources: alphavantage - Realtime Stock Data , Newsapi - Display top news ,quandl/stockstats - Historical/data prediction
 
 ### Project Flow
 

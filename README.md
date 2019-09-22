@@ -1,8 +1,11 @@
 ## Stock Data Visualization & Prediction - Project 
 
-You can use the [editor on GitHub](https://github.com/prachikhanna84/stockAnalyseVisualizePredict/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### Technologies Used: 
+Front End: D3, Javascript , css , HTML 
+Backend: Python for API
+Server : Flask 
+Database : Postgres
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
 ### Markdown
 

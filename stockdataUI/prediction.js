@@ -173,7 +173,8 @@ function getTicker() {
     var x = document.getElementById("mySelect").value
     console.log(x);
     ticker = x;
-    url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&apikey=${apiKey}`;
+    url = `http://localhost:5000/api/v1.0/getData/${ticker}`;
+    console.log(url);
 
     callSTockAPI();
 

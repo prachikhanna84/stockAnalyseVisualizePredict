@@ -11,7 +11,7 @@ const parseTime = d3.timeParse("%Y");
 
 // set the ranges
 const x = d3.scaleTime().range([0, width]);
-const y = d3.scaleLinear().range([height, 0]);
+const y = d3.scaleLinear().range([height, -50]);
 
 // define the line
 const valueline1 = d3.line()

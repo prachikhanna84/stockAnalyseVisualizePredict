@@ -12,7 +12,7 @@ The MACD's help in spotting increasing short-term momentum.
 
 ### Project Flow
 
-![](/stockdataUI/images/stock%20visualization.jpg)
+![](/stockdataUI/images/stockVisualization.jpg)
 
 ### Home Page
 

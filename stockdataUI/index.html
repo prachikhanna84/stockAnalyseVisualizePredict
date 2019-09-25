@@ -22,7 +22,7 @@
 				</li>
 			</ul>
 		</div>
-		
+
 		<div class="jumbotron">
 			<!-- <center><p><strong><font size="200" color="Yellow">The Stock Market</font></p></center> -->
 
@@ -34,17 +34,30 @@
 
 		<div class="row">
 			<div class="col-md-12">
-				<select class="button" style="margin-top: 10px; margin-right: 8px;" id="mySelect"
+				<!-- <select class="button" style="margin-top: 10px; margin-right: 8px;" id="mySelect"
 					onchange="getTicker()">
 					<option value="AMZN">AMZN
 					<option value="AAPL">AAPL
 					<option value="MSFT">MSFT
 					<option value="GOOGL">GOOGL
-				</select>
+				</select> -->
+<!-- 
+				<h2>Company</h2>
+
+				<p>Start typing:</p> -->
+
+				<!--Make sure the form has the autocomplete function switched off:-->
+
 				<div class="btn-group button" role="group" aria-label="Basic example">
 					<button type="button" class="btn " onclick="dayButtonClick('7')">1w</button>
 					<button type="button" class="btn " onclick="dayButtonClick('30')">1m</button>
 					<button type="button" class="btn " onclick="dayButtonClick('180')">6m</button>
+					<!-- <form autocomplete="off" > -->
+						<div class="autocomplete" style="width:300px;">
+							<input id="myInput" type="text" name="myCompany" placeholder="AMZN">
+						</div>
+						<input type="submit" class="btn submit" onclick="getTicker() "> 
+					<!-- </form> -->
 				</div>
 			</div>
 		</div>
@@ -75,6 +88,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
 	<script src="line.js"></script>
 	<script src="news.js"></script>
+	<script src="ticker.js"></script>
 
 </body>
 

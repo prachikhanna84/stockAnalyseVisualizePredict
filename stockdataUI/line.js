@@ -242,8 +242,7 @@ function dayButtonClick(days) {
 }
 
 function getTicker() {
-    var x = document.getElementById("mySelect").value
-    console.log(x);
+    var x = document.getElementById("myInput").value
     ticker=x;
     url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&apikey=${apiKey}`;
 

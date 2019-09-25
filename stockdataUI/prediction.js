@@ -11,7 +11,7 @@ const parseTime = d3.timeParse("%Y");
 
 // set the ranges
 const x = d3.scaleTime().range([0, width]);
-const y = d3.scaleLinear().range([height, -50]);
+const y = d3.scaleLinear().range([height, 0]);
 
 // define the line
 const valueline1 = d3.line()
@@ -170,8 +170,8 @@ function dayButtonClick() {
 }
 
 function getTicker() {
-    var x = document.getElementById("mySelect").value
-    console.log(x);
+    var x = document.getElementById("myInput").value
+
     ticker = x;
     url = `http://localhost:5000/api/v1.0/getData/${ticker}`;
     console.log(url);

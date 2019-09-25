@@ -23,28 +23,26 @@
 			</ul>
 		</div>
 		<div class="jumbotron">
-			<!-- <center><p><strong><font size="200" color="Yellow">The Stock Market</font></p></center> -->
-
 			<h1 style="text-align: center; color :yellow;">
 				All About Stocks
 			</h1>
-			<p></p>
+						<p></p>
 		</div>
 
 		<div class="row">
 			<div class="col-md-12">
-				<select class="button" style="margin-top: 10px; margin-right: 8px;" id="mySelect"
-					onchange="getTicker()">
-					<option value="AMZN">AMZN
-					<option value="AAPL">AAPL
-					<option value="MSFT">MSFT
-					<option value="GOOGL">GOOGL
-				</select>
-				<!-- <div class="btn-group button" role="group" aria-label="Basic example">
-					<button type="button" class="btn " onclick="dayButtonClick('7')">1w</button>
+
+				<div class="btn-group button" role="group" aria-label="Basic example">
+					<!-- <button type="button" class="btn " onclick="dayButtonClick('7')">1w</button>
 					<button type="button" class="btn " onclick="dayButtonClick('30')">1m</button>
-					<button type="button" class="btn " onclick="dayButtonClick('180')">6m</button>
-				</div> -->
+					<button type="button" class="btn " onclick="dayButtonClick('180')">6m</button> -->
+					<!-- <form autocomplete="off" > -->
+						<div class="autocomplete" style="width:300px;">
+							<input id="myInput" type="text" name="myCompany" placeholder="AMZN">
+						</div>
+						<input type="submit" class="btn submit" onclick="getTicker() "> 
+					<!-- </form> -->
+				</div>
 			</div>
 		</div>
 
@@ -77,6 +75,7 @@
 
 	<script src="prediction.js"></script>
 	<script src="news.js"></script>
+	<script src="ticker.js"></script>
 
 </body>
 

@@ -16,6 +16,9 @@ The MACD's help in spotting increasing short-term momentum.
 
 ### Home Page
 
+Home page has a drop down for the tickers, 3 different selection criterea for # of days 1 week (1w), 1 Month (1m) , 6 months (6m).
+The top 2 news are fetched from news api and are displayed as flashing news. 
+
 ![](/stockdataUI/images/home.png)
 
 ### Visualization - Part 1

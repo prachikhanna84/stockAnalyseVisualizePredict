@@ -4,7 +4,7 @@ This project uses short term macd (12d ema) and long term macd (26d ema) to pred
 The MACD's help in spotting increasing short-term momentum. 
 
 ### Technologies Used: 
-- Front End: D3, Javascript , css , HTML
+- Front End: D3, Javascript , css , HTML , bootstrap
 - Backend: Python for API
 - Server : Flask 
 - Database : Postgres
@@ -21,6 +21,8 @@ The MACD's help in spotting increasing short-term momentum.
 ### Visualization - Part 1
 
 Visualization on home page is customized for 1 week, 1 Month , 6 Month Data
+
+Blue line represent the close price of the stock . While the orange line represent the simple moving average.Bar chart represents volume of the stocks exchanged on a particular day. If the previous day stock close price is smaller than the next day stock close price than than the bar chart is in green color else in red color.
 
 ![](/stockdataUI/images/visual1.png)
 
